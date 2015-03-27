@@ -1,9 +1,11 @@
+var console = require('console');
 module.exports = Navigation;
 
 function Navigation (events) {
   var self = this
     , currentSlideIndex = -1
-    , started = null
+    , started = null,
+    slide_show_view = null
     ;
 
   self.getCurrentSlideIndex = getCurrentSlideIndex;
@@ -14,6 +16,7 @@ function Navigation (events) {
   self.gotoLastSlide = gotoLastSlide;
   self.pause = pause;
   self.resume = resume;
+  self.setSlideShowView = setSlideShowView;
 
   events.on('gotoSlide', gotoSlide);
   events.on('gotoPreviousSlide', gotoPreviousSlide);
@@ -43,6 +46,11 @@ function Navigation (events) {
   function pause () {
     events.emit('pause');
   }
+
+  function setSlideShowView (new_slide_show_view) {
+    slide_show_view = new_slide_show_view;
+  }
+
 
   function resume () {
     events.emit('resume');
@@ -108,6 +116,7 @@ function Navigation (events) {
   }
 
   function gotoNextSlide() {
+    console.log('Navigation $$$$', currentSlideIndex, slide_show_view);
     gotoSlideByIndex(currentSlideIndex + 1);
   }
 

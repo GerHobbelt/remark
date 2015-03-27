@@ -4,7 +4,8 @@ var SlideView = require('./slideView')
   , Scaler = require('../scaler')
   , resources = require('../resources')
   , utils = require('../utils')
-  , printing = require('components/printing')
+  , printing = require('components/printing'),
+  console = require('console')
   ;
 
 module.exports = SlideshowView;
@@ -15,6 +16,10 @@ function SlideshowView (events, dom, containerElement, slideshow) {
   self.events = events;
   self.dom = dom;
   self.slideshow = slideshow;
+
+  // Added NC
+  slideshow.setSlideShowView(self);
+
   self.scaler = new Scaler(events, slideshow);
   self.slideViews = [];
 
