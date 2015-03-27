@@ -125,13 +125,13 @@ SlideshowView.prototype.isEmbedded = function () {
 SlideshowView.prototype.isAdvanceSlide = function (slideIndex) {
   var self = this;
   var sv = self.slideViews[slideIndex];
-  var invisible_animations = sv.containerElement.querySelectorAll('.remark-inline-code');
+  var invisible_animations = sv.containerElement.querySelectorAll('.animate');
   console.log('isAdvanceSlide', invisible_animations, slideIndex);
   if (invisible_animations.length == 0) {
     return true;
   } else {
     // show the first element
-    // return false;
+    // return false ;
     return true;
   }
 };
