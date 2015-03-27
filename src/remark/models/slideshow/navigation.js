@@ -112,12 +112,16 @@ function Navigation (events) {
   }
 
   function gotoPreviousSlide() {
-    gotoSlideByIndex(currentSlideIndex - 1);
+    if (slide_show_view.isPreviousSlide(currentSlideIndex)) {
+      gotoSlideByIndex(currentSlideIndex - 1);
+    }
   }
 
   function gotoNextSlide() {
-    console.log('Navigation $$$$', currentSlideIndex, slide_show_view);
-    gotoSlideByIndex(currentSlideIndex + 1);
+    // console.log('Navigation $$$$', currentSlideIndex, slide_show_view);
+    if (slide_show_view.isAdvanceSlide(currentSlideIndex)) {
+      gotoSlideByIndex(currentSlideIndex + 1);
+    }
   }
 
   function gotoFirstSlide () {

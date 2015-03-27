@@ -122,6 +122,27 @@ SlideshowView.prototype.isEmbedded = function () {
   return this.containerElement !== this.dom.getBodyElement();
 };
 
+SlideshowView.prototype.isAdvanceSlide = function (slideIndex) {
+  var self = this;
+  var sv = self.slideViews[slideIndex];
+  var invisible_animations = sv.containerElement.querySelectorAll('.remark-inline-code');
+  console.log('isAdvanceSlide', invisible_animations, slideIndex);
+  if (invisible_animations.length == 0) {
+    return true;
+  } else {
+    // show the first element
+    // return false;
+    return true;
+  }
+};
+
+SlideshowView.prototype.isPreviousSlide = function (slideIndex) {
+  var self = this;
+  var sv = self.slideViews[slideIndex];
+  console.log('isPreviousSlide', sv.containerElement, slideIndex);
+  return true;
+};
+
 SlideshowView.prototype.configureContainerElement = function (element) {
   var self = this;
 
