@@ -125,13 +125,16 @@ SlideshowView.prototype.isEmbedded = function () {
 SlideshowView.prototype.isAdvanceSlide = function (slideIndex) {
   var self = this;
   var sv = self.slideViews[slideIndex];
-  var invisible_animations = sv.containerElement.querySelectorAll('.animate');
-  console.log('isAdvanceSlide', invisible_animations, slideIndex);
-  if (invisible_animations.length == 0) {
-    return true;
+  var el = sv.containerElement;
+  // selector from reveal.js
+  var all_animations = el.querySelectorAll('.animate');
+  var hidden_animations = el.querySelectorAll('.animate:not(.visible)');
+
+  if ( (all_animations.length > 0 ) && 
+      ( (hidden_animations.length) > 0 ) ) {
+    utils.addClass(hidden_animations[0], 'visible');
+    return false;
   } else {
-    // show the first element
-    // return false ;
     return true;
   }
 };
@@ -139,8 +142,18 @@ SlideshowView.prototype.isAdvanceSlide = function (slideIndex) {
 SlideshowView.prototype.isPreviousSlide = function (slideIndex) {
   var self = this;
   var sv = self.slideViews[slideIndex];
-  console.log('isPreviousSlide', sv.containerElement, slideIndex);
-  return true;
+  var el = sv.containerElement;
+  // from reveal.js
+  var all_animations = el.querySelectorAll('.animate');
+  var shown_animations = el.querySelectorAll('.animate.visible');
+  if ( (all_animations.length > 0 ) && 
+      ( (shown_animations.length) > 0 ) ) {
+    utils.removeClass(shown_animations[0], 'visible');
+    // console.log('showing animation', slideIndex);
+    return false;
+  } else {
+    return true;
+  }
 };
 
 SlideshowView.prototype.configureContainerElement = function (element) {
@@ -229,8 +242,24 @@ SlideshowView.prototype.configureChildElements = function () {
     self.scaleElements();
   }
 
+  function isPrintingPDF() {
+    return ( /print-pdf/gi ).test(window.location.search);
+  }
+
   function onPrint (e) {
     var slideHeight;
+    if (isPrintingPDF()) {
+      
+      var animations = document.body.querySelectorAll('.animate:not(.visible)');
+      if (animations.length > 0) {
+        console.log("PDF printing configuration, revealing animations: ", 
+                      animations.length);
+        for (var i=0; i < animations.length; ++i) {
+
+          utils.addClass(animations[i], 'visible');
+        }
+      }
+    }
 
     if (e.isPortrait) {
       slideHeight = e.pageHeight * 0.4;

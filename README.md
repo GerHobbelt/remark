@@ -72,6 +72,15 @@ class: center, middle
 </html>
 ```
 
+### [Reveal.js](https://github.com/hakimel/reveal.js)-like features added in this grinner fork
+
+- added animations using the .animate css class
+
+  `.animate.fly-in[This text will fly in]`
+
+- added pdf format toggling by using `?print-pdf` in the page query string.
+  This work around allows for all animations to be visible when printing. 
+
 ### Moving On
 
 For more information on using remark, please check out the [wiki](http://github.com/gnab/remark/wiki) pages.
