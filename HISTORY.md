@@ -1,3 +1,33 @@
+### 0.10.2
+* #123: Don't expand content class inside inline code.
+
+### 0.10.1
+* #171: Remove non-working 'w' shortcut.
+
+### 0.10.0
+* #188: Add direct URL to presenter mode.
+* #187: Fix scroll wheel in Firefox.
+
+### 0.9.1
+* #177: Always start slide numbering at one.
+
+### 0.9.0
+* #177: Enable not counting specific slides.
+
+### 0.8.2
+* #182: Fix markdown rendering bug.
+
+### 0.8.1
+* #163: Call slide number format function with this set to slideshow.
+* #180: Expand macros recursively.
+
+### 0.8.0
+* #72: Add initial support for macros.
+* #143: Prevent generating navigation history.
+* #144: Prevent navigation when clicking links.
+* #170: Ignore keydown with meta and ctrl modifiers.
+* #175: Add mirrored mode.
+
 ### 0.7.0
 * #70: Add support for printing including presenter notes.
 * #75: Enable cross-slide reference links.

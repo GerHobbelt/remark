@@ -45,6 +45,15 @@ function SlideshowView (events, dom, containerElement, slideshow) {
     self.showSlide(slideIndex);
   });
 
+  events.on('forcePresenterMode', function () {
+
+    if (!utils.hasClass(self.containerElement, 'remark-presenter-mode')) {
+      utils.toggleClass(self.containerElement, 'remark-presenter-mode');
+      self.scaleElements();
+      printing.setPageOrientation('landscape');
+    }
+  });
+
   events.on('togglePresenterMode', function () {
     utils.toggleClass(self.containerElement, 'remark-presenter-mode');
     self.scaleElements();
@@ -63,6 +72,10 @@ function SlideshowView (events, dom, containerElement, slideshow) {
 
   events.on('toggleBlackout', function () {
     utils.toggleClass(self.containerElement, 'remark-blackout-mode');
+  });
+
+  events.on('toggleMirrored', function () {
+    utils.toggleClass(self.containerElement, 'remark-mirrored-mode');
   });
 
   events.on('hideOverlay', function () {
@@ -115,7 +128,8 @@ SlideshowView.prototype.configureContainerElement = function (element) {
     utils.addClass(self.dom.getHTMLElement(), 'remark-container');
 
     forwardEvents(self.events, window, [
-      'hashchange', 'resize', 'keydown', 'keypress', 'mousewheel', 'message'
+      'hashchange', 'resize', 'keydown', 'keypress', 'mousewheel',
+      'message', 'DOMMouseScroll'
     ]);
     forwardEvents(self.events, self.containerElement, [
       'touchstart', 'touchmove', 'touchend', 'click', 'contextmenu'
@@ -230,8 +244,8 @@ SlideshowView.prototype.updateSlideViews = function () {
 
   self.updateDimensions();
 
-  if (self.slideshow.getCurrentSlideNo() > 0) {
-    self.showSlide(self.slideshow.getCurrentSlideNo() - 1);
+  if (self.slideshow.getCurrentSlideIndex() > -1) {
+    self.showSlide(self.slideshow.getCurrentSlideIndex());
   }
 };
 

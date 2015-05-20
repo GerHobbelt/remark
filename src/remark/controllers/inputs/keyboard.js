@@ -8,6 +8,11 @@ exports.unregister = function (events) {
 
 function addKeyboardEventListeners (events) {
   events.on('keydown', function (event) {
+    if (event.metaKey || event.ctrlKey) {
+      // Bail out if meta or ctrl key was pressed
+      return;
+    }
+
     switch (event.keyCode) {
       case 33: // Page up
       case 37: // Left
@@ -47,6 +52,9 @@ function addKeyboardEventListeners (events) {
         break;
       case 'b':
         events.emit('toggleBlackout');
+        break;
+      case 'm':
+        events.emit('toggleMirrored');
         break;
       case 'c':
         events.emit('createClone');

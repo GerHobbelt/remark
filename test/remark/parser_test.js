@@ -93,6 +93,35 @@ describe('Parser', function () {
     });
   });
 
+  describe('parsing macros', function () {
+    it('should expand macro', function () {
+      var macros = {
+        sum: function () {
+          var result = 0;
+          for (var i = 0; i < arguments.length; ++i) {
+            result += parseInt(arguments[i], 10);
+          }
+          return result;
+        }
+      };
+      parser.parse('a ![:sum 1, 2, 3] b', macros)[0].content
+        .should.eql(['a 6 b']);
+    });
+
+    it('should expand macro recursively', function () {
+      var macros = {
+        upper: function () {
+          return this.toUpperCase();
+        },
+        addupper: function () {
+          return "![:upper](word)";
+        }
+      };
+      parser.parse('Uppercase => ![:addupper](word)', macros)[0].content
+        .should.eql(['Uppercase => WORD']);
+    });
+  });
+
   describe('parsing content classes', function () {
     it('should convert block content classes', function () {
       parser.parse('1 .class[\nx\n] 2')[0].content

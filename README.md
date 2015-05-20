@@ -12,6 +12,8 @@ A simple, in-browser, markdown-driven slideshow tool targeted at people who know
 
 Check out [this remark slideshow](http://gnab.github.com/remark) for a brief introduction.
 
+To render your Markdown-based slideshow on the fly, checkout [Remarkise](https://gnab.github.io/remark/remarkise).
+
 ### Getting Started
 
 It takes only a few, simple steps to get up and running with remark:
@@ -29,9 +31,9 @@ Below is a boilerplate HTML file to get you started:
     <title>Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
-      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
       body { font-family: 'Droid Serif'; }
       h1, h2, h3 {
@@ -61,9 +63,9 @@ class: center, middle
 # Introduction
 
     </textarea>
-    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
-    <script type="text/javascript">
+    <script>
       var slideshow = remark.create();
     </script>
   </body>
@@ -97,6 +99,7 @@ Other interesting stuff:
 
 ### Other systems integrating with remark
 
+- [http://platon.io](http://platon.io)
 - [http://markdowner.com](http://markdowner.com)
 - [http://remarks.sinaapp.com](http://remarks.sinaapp.com/)
 
