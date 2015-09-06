@@ -49,7 +49,7 @@ function markdownToHtml (markdown, links) {
     };
   }
 
-  var reader = new commonmark.DocParser();
+  var reader = new commonmark.Parser();
 
   // Patch inline parser to use custom refmap
   var parse = reader.inlineParser.parse;
